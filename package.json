@@ -1,0 +1,25 @@
+{
+  "name": "bitripl-mothership",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bitripl-mothership.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banders/bitripl-mothership.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/banders/bitripl-mothership/issues"
+  },
+  "homepage": "https://github.com/banders/bitripl-mothership#readme"
+}
