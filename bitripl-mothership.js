@@ -58,14 +58,16 @@ app.post('/', (req, res) => {
             return;
         }
         try {
-            channelInfo = lookupChannel(deviceId);
+            channelInfos = lookupChannels(deviceId);
         }
         catch (e) {
           console.warn(` ${e}`)
           res.status(400).send({"msg": `${e}`});  
           return;
         }
-        postToBitripl(channelInfo, body)
+        for (var i = 0; i < channelInfos.length; i++) {
+          postToBitripl(channelInfos[i], body)
+        }
         res.sendStatus(200);
     });
 
@@ -75,17 +77,16 @@ app.post('/', (req, res) => {
 //Helper functions
 //-----------------------------------------------------------------------------
 
-function lookupChannel(deviceId) {
-    channelInfo = deviceToChannelMapping.filter(obj => obj.device_id == deviceId)
-    if (!channelInfo.length) {
+function lookupChannels(deviceId) {
+    channelInfos = deviceToChannelMapping.filter(obj => obj.device_id == deviceId)
+    if (!channelInfos.length) {
       throw "Unknown Device ID"
     }
-    return channelInfo[0]
+    return channelInfos
 }
 
 function postToBitripl(channelInfo, data) {
-    console.log(` Posting to ${channelInfo.bitripl_account}/${channelInfo.bitripl_channel}`)
-
+    
     // An object of options to indicate where to post to
     var options = {
         host: 'www.bitripl.com',
@@ -100,6 +101,7 @@ function postToBitripl(channelInfo, data) {
     };
     
     var post_req = https.request(options, function(res) {
+          console.log(` Posting to ${channelInfo.bitripl_account}/${channelInfo.bitripl_channel}`)
           console.log(`  Response status code: ${res.statusCode}`)
           var data = [];
           res.on('data', (chunk) => {
