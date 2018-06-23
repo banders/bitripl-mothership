@@ -2,6 +2,7 @@
 
 Create a mappings.json file:
 
+```
 [
   {
     "device_id": "my-sensor-id",
@@ -10,6 +11,7 @@ Create a mappings.json file:
     "bitripl_access_code": "my_channel_access_code"
   }
 ]
+```
 
 ## Run
 
