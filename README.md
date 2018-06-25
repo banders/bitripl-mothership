@@ -1,8 +1,11 @@
+# bitripl-mothership
+
 Relays data from sensor devices on a local network to time-series data platform [bitripl.com](https://www.bitripl.com).
 
+Q: Why can't sensor devices upload directly to bitripl without an intermediary relay service?  A: All communication with bitripl must be encrypted to protect data (i.e. bitripl uses HTTPS).  Some sensor devices do not have sufficient CPU and memory resources to encrypt and decrypt communication.  Such devices cannot communicate directly with bitripl.  Instead, they must upload to a relay service which doesn't require HTTPS.  The relay service will then forward the data to bitripl via HTTPS on behalf of the sensor device.
 
 
-## setup
+## Setup
 
 Create a mappings.json file to define which sensor device whill be mapped to which bitripl channel.
 
@@ -21,7 +24,7 @@ Create a mappings.json file to define which sensor device whill be mapped to whi
 
 node bitripl-mothership.js
 
-## Integration with bitripl-mothership from sensors on the local network
+## Interface between a sensor device and bitripl-mothership
 
 Sensors can upload to bitripl-mothership via its built-in REST API:
 
@@ -33,6 +36,8 @@ POST [IP_ADDRESS_OF_BITRIPL_MOTHERSHIP]:9505/
   body:
     any JSON content that you want to relay to bitripl
 ```
+
+When bitripl-mothership receives a POST request, it will forward the request to bitripl.com according to the instructions in the mappings.json file.
 
 ## Example
 
