@@ -1,4 +1,4 @@
-Relays data from sensor devices on a local network to bitripl.com.
+Relays data from sensor devices on a local network to time-series data platform [bitripl.com](https://www.bitripl.com).
 
 
 
@@ -33,3 +33,7 @@ POST [IP_ADDRESS_OF_BITRIPL_MOTHERSHIP]:9505/
   body:
     any JSON content that you want to relay to bitripl
 ```
+
+## Example
+
+[Build a wifi-connected temperature sensor](https://www.bitripl.com/docs/tutorials/build-temperature-sensor/build-temperature-sensor/) which uses `bitripl-mothership` to upload data to a bitripl channel.
