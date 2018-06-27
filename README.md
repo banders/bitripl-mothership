@@ -20,6 +20,31 @@ Create a mappings.json file to define which sensor device whill be mapped to whi
 ]
 ```
 
+... or to downscale the time resolution of the data, you can configure a buffer over a time interval:
+
+```
+[
+  {
+    "device_id": "sensor-test1",
+    "bitripl_account": "my_account",
+    "bitripl_channel": "my_channel",
+    "bitripl_access_code": "my_channel_access_code",
+    "buffer": {
+      "interval_seconds": 1800,
+      "attributes": [
+        {
+          "function": "average",
+          "jsonpath": "$.sensor_property_name"
+        }
+      ]
+    }
+  }
+]
+```
+
+This will collect all the data points over a half-hour (1800 second) interval, and will then merge them into a new aggregated data point with an average value of the data property called `sensor_property_name`.  Values for any other properties in the aggregated data point will be copied from the last data point in the interval.  The aggregate data point will be relayed to a bitripl.com channel when the interval ends.
+
+
 ## Run
 
 node bitripl-mothership.js
