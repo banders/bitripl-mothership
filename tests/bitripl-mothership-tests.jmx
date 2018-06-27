@@ -100,7 +100,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;temperature&quot;: 14.13, &quot;unit&quot;: &quot;celsius&quot;}</stringProp>
+                <stringProp name="Argument.value">{&quot;temperature&quot;: ${RANDOM_TEMPERATURE}, &quot;unit&quot;: &quot;celsius&quot;}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -120,6 +120,15 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random temperature" enabled="true">
+            <stringProp name="maximumValue">20</stringProp>
+            <stringProp name="minimumValue">12</stringProp>
+            <stringProp name="outputFormat"></stringProp>
+            <boolProp name="perThread">false</boolProp>
+            <stringProp name="randomSeed"></stringProp>
+            <stringProp name="variableName">RANDOM_TEMPERATURE</stringProp>
+          </RandomVariableConfig>
+          <hashTree/>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
